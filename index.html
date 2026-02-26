@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caça aos Bugs!</title>
+        <link rel="stylesheet" href="styles/menu-styles.css">
+        <link rel="stylesheet" href="styles/page-styles.css">
+        <link rel="stylesheet" href="styles/game-styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+    <body class="menu-bg">
+    <div id="menu-grid">
+        <button type="button" id="btn-start" class="btn text-white btn-darkb-grad menu-btn">Começar</button>
+        <button type="button" id="btn-options" class="btn text-white btn-darkb-grad menu-btn">Opções</button>
+        <button type="button" id="btn-exit" class="btn text-white btn-darkb-grad menu-btn">Sair</button>
+    </div>
+
+    <div id="game-screen" hidden>
+        <div id="game-level text-center"></div> <!--resolver bug aqui-->
+    </div>
+
+    <script src="scripts/menu.js"></script>
+    </body>
+</html>
