@@ -1,0 +1,41 @@
+/*Fontes Customizadas do Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+/*font-family: "Orbitron", sans-serif;*/
+
+* {
+    font-family: "Orbitron", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body.menu-bg {
+    background: url("../assets/menu-bg.png") center / cover no-repeat;
+}
+
+body.game-bg {
+    background: url("../assets/game-bg.png") center / cover no-repeat;
+}
+
+p {
+    font-weight: bold;
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+    body.menu-bg {
+        background: url("../assets/menu-bg-mobile.png") center / cover no-repeat;
+    }
+    body.game-bg {
+        background: url("../assets/game-bg-mobile.png") center / cover no-repeat;
+    }
+}

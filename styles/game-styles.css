@@ -1,0 +1,65 @@
+/* Stylesheet de Elementos Apenas do Jogo */
+/*
+-- PALETA DE CORES --
+#56A2C0
+#7ACBDD
+#DFF4F7
+#65D876
+#B4E8F3
+
+*/
+
+.menu-btn {
+  box-shadow: 0px 6px 16px 0px rgba(0,0,0,0.20);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  user-select: auto;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.menu-btn:hover {
+  transform: translateY(-3px) !important;
+  background: #bff4ff;
+  color: #ffffff;
+}
+
+.menu-btn:active {
+  transform: scale(0.96) !important;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.btn-darkb-grad {
+	background: linear-gradient(to top, #56A2C0 0%, #B4E8F3 50%) !important;
+}
+
+
+.lightb-color {
+	background-color: #7ACBDD !important;
+}
+
+.darkb-color {
+	background-color: #56A2C0 !important;
+}
+
+.whiteb-color {
+	background-color: #DFF4F7 !important;
+}
+
+.lightg-color {
+	background-color: #65D876 !important;
+}
+
+.vlightb-color {
+	background-color: #B4E8F3 !important;
+}
+

@@ -1,0 +1,42 @@
+#menu-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    margin-top: 100px;
+}
+#menu-grid,
+#game-screen {
+    transition: opacity 0.3s ease;
+}
+
+#menu-container {
+	grid-area: 2 / 2 / 10 / 10;
+
+}
+#div-game-title {
+	grid-area: 3 / 4 / 4 / 8;
+
+}
+#btn-start {
+	grid-area: 6 / 5 / 7 / 7;
+
+}
+#btn-options {
+	grid-area: 7 / 5 / 8 / 7;
+
+}
+#btn-exit {
+	grid-area: 8 / 5 / 9 / 7;
+}
+
+/* Tamanho e Margem - Btns Menu*/
+#btn-start,
+#btn-options,
+#btn-exit {
+    width: 200px !important;
+    margin: 5px !important;
+}
