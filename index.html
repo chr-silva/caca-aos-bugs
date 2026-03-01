@@ -11,14 +11,27 @@
     <body class="menu-bg">
     <div id="menu-grid">
         <button type="button" id="btn-start" class="btn text-white btn-darkb-grad menu-btn">Começar</button>
-        <button type="button" id="btn-options" class="btn text-white btn-darkb-grad menu-btn">Opções</button>
+        <button type="button" id="btn-ranking" class="btn text-white btn-darkb-grad menu-btn">Ranking</button>
         <button type="button" id="btn-exit" class="btn text-white btn-darkb-grad menu-btn">Sair</button>
     </div>
-
-    <div id="game-screen" hidden>
-        <div id="game-level text-center"></div> <!--resolver bug aqui-->
+<div id="game-screen" hidden>
+    <div class="status-bar">
+        <span>Pontos: <b id="score">0</b></span>
+        <span>Tempo: <b id="timer">120</b>s</span>
     </div>
+    <div class="game-container">
+        <div id="game-area"></div>
+    </div>
+</div>
+<div id="ranking-screen" hidden>
+    <div id="ranking-content">
+        </div>
+</div>
 
+    <script type="module" src="scripts/firebase.js"></script>
     <script src="scripts/menu.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/leaderboard.js"></script>
+    
     </body>
 </html>
