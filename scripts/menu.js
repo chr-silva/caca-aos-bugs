@@ -7,25 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const rankingScreen = document.getElementById("ranking-screen");
 
     btnStart.addEventListener("click", () => {
-    // 1. Esconde o menu e REMOVE ele do fluxo (display none)
+    //esconde o menu
     menuGrid.style.display = "none"; 
     
 
-    // 2. Mostra a tela do jogo
+    //tela do jogo
     gameScreen.hidden = false;
-    gameScreen.style.display = "block"; // Garante que o game-screen não herde flex
+    gameScreen.style.display = "block"; //garante que o game-screen não herde flex
 
-    // 3. Troca o fundo
+    //troca o fundo
     document.body.classList.remove("menu-bg");
     document.body.classList.add("game-bg");
 
-    // 4. Inicia o jogo
+    //inicia o jogo
     initGame();
     });
-    
+
+    //troca pra tela de ranking
     btnRanking.addEventListener("click", () => {
         menuGrid.hidden = true;
         rankingScreen.hidden = false;
-    displayRanking(); // Chama a função que busca no Firebase
+    displayRanking(); //chama a função que busca no Firebase
     });
 });
