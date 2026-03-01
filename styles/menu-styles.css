@@ -25,7 +25,7 @@
 	grid-area: 6 / 5 / 7 / 7;
 
 }
-#btn-options {
+#btn-ranking {
 	grid-area: 7 / 5 / 8 / 7;
 
 }
@@ -35,7 +35,7 @@
 
 /* Tamanho e Margem - Btns Menu*/
 #btn-start,
-#btn-options,
+#btn-ranking,
 #btn-exit {
     width: 200px !important;
     margin: 5px !important;
