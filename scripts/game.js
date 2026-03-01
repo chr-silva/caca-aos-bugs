@@ -1,6 +1,6 @@
 // game.js
 let score = 0;
-let timeLeft = 5;
+let timeLeft = 30;
 let gameInterval;
 let timerInterval;
 let nextSpawnDelay = 1000; // Começa com 1 segundo (1000ms)
@@ -40,7 +40,7 @@ function gameLoop() {
 
 function initGame() {
     score = 0;
-    timeLeft = 5;
+    timeLeft = 30;
     updateUI();
     
     // Loop de criação de ícones (cada 1 segundo)
