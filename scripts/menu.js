@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameScreen = document.getElementById("game-screen");
     const btnRanking = document.getElementById("btn-ranking");
     const rankingScreen = document.getElementById("ranking-screen");
+    const btnHelp = document.getElementById("btn-help");
+    const helpScreen = document.getElementById("help-screen");
 
     btnStart.addEventListener("click", () => {
     //esconde o menu
@@ -27,6 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
     btnRanking.addEventListener("click", () => {
         menuGrid.hidden = true;
         rankingScreen.hidden = false;
+        rankingScreen.style.display = "flex";
     displayRanking(); //chama a função que busca no Firebase
+    });
+    //troca pra tela de ajuda
+    btnHelp.addEventListener("click", () => {
+        menuGrid.hidden = true;
+        helpScreen.hidden = false;
+        helpScreen.style.display = "flex";
     });
 });
