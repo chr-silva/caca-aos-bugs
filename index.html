@@ -6,13 +6,14 @@
         <link rel="stylesheet" href="styles/menu-styles.css">
         <link rel="stylesheet" href="styles/page-styles.css">
         <link rel="stylesheet" href="styles/game-styles.css">
+        <link rel="stylesheet" href="styles/leaderboard-styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     </head>
     <body class="menu-bg">
     <div id="menu-grid">
         <button type="button" id="btn-start" class="btn text-white btn-darkb-grad menu-btn">Começar</button>
         <button type="button" id="btn-ranking" class="btn text-white btn-darkb-grad menu-btn">Ranking</button>
-        <button type="button" id="btn-exit" class="btn text-white btn-darkb-grad menu-btn">Sair</button>
+        <button type="button" id="btn-help" class="btn text-white btn-darkb-grad menu-btn">Ajuda</button>
     </div>
 <div id="game-screen" hidden>
     <div class="status-bar">
@@ -24,10 +25,69 @@
     </div>
 </div>
 <div id="ranking-screen" hidden>
-    <div id="ranking-content">
+    <div class="card-container">
+        <h3>TOP 5 CAÇADORES</h3>
+        
+        <div class="leaderboard-table">
+            <div class="row text-center leaderboard-header">
+                <div class="col-3">Pos</div>
+                <div class="col-5">Nome</div>
+                <div class="col-4">Pontos</div>
+            </div>
+            <div id="leaderboard-body"></div>
         </div>
-</div>
+        
+        <div id="loading-message">
+            Carregando Caçadores...
+        </div>
 
+        <button onclick="window.location.reload()" class="btn btn-darkb-grad mt-3 text-white">
+            Voltar ao Menu
+        </button>
+    </div>
+</div>
+<div id="help-screen" class="d-flex justify-content-center align-items-start min-vh-100" 
+     style="background: rgba(0,0,0,0.95); position: fixed; width: 100vw; top: 0; left: 0; z-index: 10005; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 40px 0;" 
+     hidden>
+    
+    <div class="card-container d-flex flex-column align-items-center gap-3">
+        <h3 class="text-white mb-2">Como Jogar?</h3>
+        
+        <div class="card bg-primary shadow-lg border-light" style="width: 18rem;">
+            <img src="assets/help/help-1.png" class="card-img-top p-2" alt="Vírus e Bugs">
+            <div class="card-body py-2">
+                <h5 class="card-title text-center text-white mb-1">Capture estes!</h5>
+                <p class="card-text text-center text-white-50 small">Clique neles para ganhar pontos!</p>
+            </div>
+            <ul class="list-group list-group-flush border-top border-light">
+                <li class="list-group-item bg-primary text-white border-light small">
+                    <img src="assets/entities/bug.png" class="help-icon"> Bug: +100 pontos
+                </li>
+                <li class="list-group-item bg-primary text-white border-light small">
+                    <img src="assets/entities/virus-1.png" class="help-icon"> Vírus: +250 pontos
+                </li>
+            </ul>
+        </div>
+
+        <div class="card bg-danger shadow-lg border-light" style="width: 18rem;">
+            <img src="assets/help/help-2.png" class="card-img-top p-2" alt="Arquivos e Escudos">
+            <div class="card-body py-2">
+                <h5 class="card-title text-center text-white mb-1">Cuidado com estes!</h5>
+                <p class="card-text text-center text-white-50 small">Estes itens danificam sua pontuação!</p>
+            </div>
+            <ul class="list-group list-group-flush border-top border-light">
+                <li class="list-group-item bg-danger text-white border-light small">
+                    <img src="assets/entities/file.png" class="help-icon"> Arquivo: -50 pontos
+                </li>
+                <li class="list-group-item bg-danger text-white border-light small">
+                    <img src="assets/entities/shield.png" class="help-icon"> Escudo: -40 pontos
+                </li>
+            </ul>
+        </div>
+
+        <button class="btn btn-light shadow fw-bold px-5 mt-2 mb-4" onclick="document.getElementById('help-screen').hidden = true; document.getElementById('menu-grid').hidden = false;">ENTENDI!</button>
+    </div>
+</div>
     <script type="module" src="scripts/firebase.js"></script>
     <script src="scripts/menu.js"></script>
     <script src="scripts/game.js"></script>
