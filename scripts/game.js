@@ -1,10 +1,14 @@
 // game.js
+//constantes globais pra poupar nosso tempo na hora de debuggar
+const TOTAL_GAME_TIME = 30; //tempo inicial em segundos, mudar isso altera o tempo da rodada
+const INITIAL_SPAWN_DELAY = 1000;
+const MIN_SPAWN_DELAY = 300; // Limite máximo de velocidade (0.3 segundos)
+
 let score = 0;
-let timeLeft = 30;
-let gameInterval;
+let timeLeft = TOTAL_GAME_TIME; 
 let timerInterval;
-let nextSpawnDelay = 1000; // Começa com 1 segundo (1000ms)
-const minSpawnDelay = 300; // Limite máximo de velocidade (0.3 segundos)
+let nextSpawnDelay = INITIAL_SPAWN_DELAY;
+let gameInterval;
 
 // atenção!!! a soma de todas as probabilidades dentro do objeto deve corresponder a 100%!!
 const entityTypes = [
@@ -31,8 +35,8 @@ function gameLoop() {
     // Ex: Em 120s, delay é 1000ms. Em 0s, delay chega perto de 300ms.
     // A cada segundo que passa, subtraímos um pouco do delay.
     
-    const progress = (120 - timeLeft) / 120; // Vai de 0 a 1
-    nextSpawnDelay = 1000 - (progress * (1000 - minSpawnDelay));
+    const progress = (TOTAL_GAME_TIME - timeLeft) / TOTAL_GAME_TIME; // Vai de 0 a 1
+    nextSpawnDelay = INITIAL_SPAWN_DELAY - (progress * (INITIAL_SPAWN_DELAY - MIN_SPAWN_DELAY));
 
     // Agenda o próximo ícone com o novo delay calculado
     setTimeout(gameLoop, nextSpawnDelay);
@@ -40,7 +44,8 @@ function gameLoop() {
 
 function initGame() {
     score = 0;
-    timeLeft = 30;
+    timeLeft = TOTAL_GAME_TIME;
+    nextSpawnDelay = INITIAL_SPAWN_DELAY;
     updateUI();
     
     // Loop de criação de ícones (cada 1 segundo)
