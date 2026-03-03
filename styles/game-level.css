@@ -1,16 +1,26 @@
-/* Centraliza a área do jogo */
-/* Isso limpa qualquer interferência externa no jogo */
+/* 1. TELA PRINCIPAL (O PALCO DO JOGO) */
 #game-screen {
-    position: fixed !important; /* Fixado na janela toda */
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important; /* Mata o Flexbox se houver */
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
     z-index: 9999;
     overflow: hidden;
+    background-color: #000; /* Fundo preto caso a imagem demore */
+}
+
+/* 2. BACKGROUND E ÁREA DE JOGO */
+.game-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Use 'cover' para o fundo ocupar tudo sem deixar bordas vazias */
+    background: url("../assets/game-bg-mobile.png") center center / cover no-repeat;
 }
 
 #game-area {
@@ -19,105 +29,112 @@
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    display: block !important;
-    overflow: visible;
+    pointer-events: none; /* Cliques passam para os ícones */
 }
 
-.icon {
-    position: absolute !important; /* O ícone flutua */
-    z-index: 10000;
-    pointer-events: auto;
-    transform: translate(0, 0); /* Garante que o navegador trate como camada própria */
-}
-
-/* Feedback visual simples (opcional) */
-.icon.bug { filter: drop-shadow(0 0 5px red); }
-.icon.virus { filter: drop-shadow(0 0 10px lime); scale: 1.2; }
-
-.game-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: block !important;
-  background: url("../assets/game-bg-mobile.png") center / contain no-repeat;
-}
-
-.bg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
+/* 3. INTERFACE (HUD) */
 .status-bar {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     color: white;
-    padding: 10px;
+    padding: 15px;
     display: flex;
     justify-content: space-around;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     z-index: 100;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom: 2px solid #56A2C0;
 }
 
+/* 4. ENTIDADES (BUGS E ÍCONES) */
+.icon {
+    position: absolute !important;
+    z-index: 10;
+    pointer-events: auto; /* Permite o clique */
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; /* Remove o brilho de toque no mobile */
+}
+
+.icon.bug { filter: drop-shadow(0 0 8px #ff4d4d); }
+.icon.virus { filter: drop-shadow(0 0 12px #65D876); transform: scale(1.1); }
+
+/* 5. FEEDBACK DE CLIQUES */
 .floating-text {
     position: absolute;
-    pointer-events: none; /* Não atrapalha cliques futuros */
+    pointer-events: none;
     font-weight: bold;
-    font-size: 24px;
-    z-index: 10001; /* Acima de tudo */
+    font-size: 28px;
+    z-index: 1000;
     animation: floatUp 0.8s ease-out forwards;
 }
 
 @keyframes floatUp {
-    0% {
-        opacity: 0;
-        transform: translateY(0);
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-50px); /* Sobe 50px */
-    }
+    0% { opacity: 0; transform: translateY(0) scale(0.5); }
+    20% { opacity: 1; transform: translateY(-10px) scale(1.2); }
+    100% { opacity: 0; transform: translateY(-60px) scale(1); }
 }
 
-.text-plus { color: #65D876; text-shadow: 1px 1px 2px black; } /* Verde para lucro */
-.text-minus { color: #ff4d4d; text-shadow: 1px 1px 2px black; } /* Vermelho para erro */
+.text-plus { color: #65D876; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.text-minus { color: #ff4d4d; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+/* 6. TELAS DE RANKING (A MÁGICA DA CENTRALIZAÇÃO) */
+#card-screen {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 20000;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+#ranking-screen[hidden] {
+    display: none !important;
+}
 
 .leaderboard-container {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid #56A2C0;
+    background: #121212;
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px solid #56A2C0;
     color: white;
     text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 400px;
-    z-index: 10002;
-    pointer-events: auto;
+    max-width: 450px;
+    box-shadow: 0 0 30px rgba(86, 162, 192, 0.4);
 }
 
-.leaderboard-container table {
+.leaderboard-container h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+    color: #56A2C0;
+}
+
+.leaderboard-table {
     width: 100%;
+    margin: 20px 0;
+}
+
+.leaderboard-header {
+    background: rgba(86, 162, 192, 0.2);
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 0 0 10px 0 !important;
+    padding: 12px 0;
+}
+
+#leaderboard-body {
+    display: block;
+    width: 100%;
+}
+
+#loading-message {
+    display: none;
+    color: white;
     margin-top: 15px;
-    border-collapse: collapse;
 }
-
-.leaderboard-container th, .leaderboard-container td {
-    padding: 10px;
-    border-bottom: 1px solid #444;
-}
-
-.leaderboard-container tr:first-child { color: #7ACBDD; }
-
