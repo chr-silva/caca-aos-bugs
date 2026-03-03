@@ -29,14 +29,14 @@
 	grid-area: 7 / 5 / 8 / 7;
 
 }
-#btn-exit {
+#btn-help {
 	grid-area: 8 / 5 / 9 / 7;
 }
 
 /* Tamanho e Margem - Btns Menu*/
 #btn-start,
 #btn-ranking,
-#btn-exit {
+#btn-help {
     width: 200px !important;
     margin: 5px !important;
 }
