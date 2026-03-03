@@ -1,8 +1,8 @@
 // game.js
 //constantes globais pra poupar nosso tempo na hora de debuggar
 const TOTAL_GAME_TIME = 30; //tempo inicial em segundos, mudar isso altera o tempo da rodada
-const INITIAL_SPAWN_DELAY = 1000;
-const MIN_SPAWN_DELAY = 300; // Limite máximo de velocidade (0.3 segundos)
+const INITIAL_SPAWN_DELAY = 500; //antes 1000
+const MIN_SPAWN_DELAY = 200; // Limite máximo de velocidade (0.3 segundos) / antes 300
 
 let score = 0;
 let timeLeft = TOTAL_GAME_TIME; 
