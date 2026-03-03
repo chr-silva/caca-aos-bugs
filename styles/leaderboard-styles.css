@@ -1,0 +1,109 @@
+/* TELA DE RANKING */
+#ranking-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ranking-screen[hidden] {
+    display: none !important;
+}
+
+.help-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Ajuste para que o texto da lista fique alinhado verticalmente com a imagem */
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+#help-screen {
+    position: fixed;
+    padding: 40px 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#help-screen.d-flex {
+    align-items: start !important;
+}
+/* Estilização da barra de rolagem para ficar discreta (opcional) */
+#help-screen::-webkit-scrollbar {
+    width: 6px;
+}
+#help-screen::-webkit-scrollbar-thumb {
+    background: #56A2C0;
+    border-radius: 10px;
+}
+
+#help-screen[hidden] {
+    display: none !important;
+} /*copiei e colei uma por outra pq deu preguiça de ajeitar o js e substituir por classe*/
+
+/* CONTAINER DA TABELA */
+.card-container {
+    background: #121212;
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px solid #56A2C0;
+    color: white;
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 0 30px rgba(86, 162, 192, 0.4);
+}
+
+.card-container h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+    color: #56A2C0;
+}
+
+/* TABELA */
+.leaderboard-table {
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* CABEÇALHO DA TABELA */
+.card-header {
+    background: rgba(86, 162, 192, 0.2);
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    padding: 12px 0;
+}
+
+
+/* CORPO DA TABELA */
+#leaderboard-body {
+    display: block;
+    width: 100%;
+}
+
+/* MENSAGEM DE CARREGAMENTO */
+#loading-message {
+    display: none;
+    color: white;
+    margin-top: 15px;
+}
