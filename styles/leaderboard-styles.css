@@ -1,68 +1,41 @@
-/* TELA DE RANKING */
-#ranking-screen {
+/* ==========================================================================
+   CONFIGURAÇÕES GLOBAIS DE OVERLAY (Telas Fullscreen)
+   ========================================================================== */
+#ranking-screen,
+#help-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px); /* Efeito de desfoque moderno */
     z-index: 20000;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#ranking-screen[hidden] {
+/* Força o fechamento quando o atributo [hidden] estiver presente */
+#ranking-screen[hidden],
+#help-screen[hidden] {
     display: none !important;
 }
 
-.help-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-/* Ajuste para que o texto da lista fique alinhado verticalmente com a imagem */
-.list-group-item {
-    display: flex;
-    align-items: center;
-}
-
 #help-screen {
-    position: fixed;
     padding: 40px 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 20000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #help-screen.d-flex {
     align-items: start !important;
 }
-/* Estilização da barra de rolagem para ficar discreta (opcional) */
-#help-screen::-webkit-scrollbar {
-    width: 6px;
-}
-#help-screen::-webkit-scrollbar-thumb {
-    background: #56A2C0;
-    border-radius: 10px;
-}
 
-#help-screen[hidden] {
-    display: none !important;
-} /*copiei e colei uma por outra pq deu preguiça de ajeitar o js e substituir por classe*/
-
-/* CONTAINER DA TABELA */
-.card-container {
-    background: #121212;
+/* ==========================================================================
+   CONTAINERS (Cards de Vidro)
+   ========================================================================== */
+.card-container,
+.leaderboard-container {
+    background: rgba(18, 18, 18, 0);
     padding: 30px;
     border-radius: 20px;
     border: 3px solid #56A2C0;
@@ -71,39 +44,138 @@
     width: 90%;
     max-width: 450px;
     box-shadow: 0 0 30px rgba(86, 162, 192, 0.4);
+    animation: popIn 0.5s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
+    overflow: hidden;
 }
 
-.card-container h3 {
+.card-container h3,
+.leaderboard-container h3 {
     margin: 0 0 20px 0;
     font-size: 1.5em;
     color: #56A2C0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-/* TABELA */
+/* Cabeçalhos de Tabela/Lista */
+.leaderboard-header,
+.card-header {
+    background: rgba(86, 162, 192, 0.2);
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(86, 162, 192, 0.3);
+}
+
+/* ==========================================================================
+   LISTAS E ITENS
+   ========================================================================== */
 .leaderboard-table {
     width: 100%;
     margin: 20px 0;
 }
 
-/* CABEÇALHO DA TABELA */
-.card-header {
-    background: rgba(86, 162, 192, 0.2);
-    border-radius: 8px;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    padding: 12px 0;
+.list-group-item {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
+.help-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 12px;
+}
 
-/* CORPO DA TABELA */
+/* ==========================================================================
+   SISTEMA DE SCROLL (PARA 35+ JOGADORES)
+   ========================================================================== */
 #leaderboard-body {
-    display: block;
-    width: 100%;
+    max-height: 55vh;
+    overflow-y: auto;   /* Scroll vertical permitido */
+    overflow-x: hidden; /* Proíbe terminantemente o scroll horizontal */
+    padding-right: 8px; /* Espaço para a scrollbar não cobrir os pontos */
+    width: 100%;        /* Garante que ele use a largura total disponível */
 }
 
-/* MENSAGEM DE CARREGAMENTO */
+/* Scrollbar Customizada */
+#leaderboard-body::-webkit-scrollbar,
+#help-screen::-webkit-scrollbar {
+    width: 6px;
+}
+
+#leaderboard-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#leaderboard-body::-webkit-scrollbar-thumb,
+#help-screen::-webkit-scrollbar-thumb {
+    background: #56A2C0;
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   ESTADOS E ANIMAÇÕES
+   ========================================================================== */
 #loading-message {
-    display: none;
-    color: white;
+    display: none; /* Controlado via JS */
+    color: #56A2C0;
     margin-top: 15px;
+    font-weight: bold;
+}
+
+.animate-pulse {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Classe utilitária para aplicar em cada linha do ranking via JS */
+.player-row-animation {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* ==========================================================================
+   TELA DE RESULTADOS DO MODO SOLO
+   ========================================================================== */
+
+
+#solo-result-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9); /* Escurece o fundo do jogo */
+    z-index: 20000;
+    display: none; /* Controlado pelo JS */
+    justify-content: center;
+    align-items: center;
+}
+
+#solo-player-name {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #56A2C0;
+    color: white;
+    font-size: 1.2rem;
+}
+
+#solo-player-name::placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }

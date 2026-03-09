@@ -4,6 +4,9 @@
     justify-content: center;
     align-items: center;
 
+	grid-template-rows: repeat(11, 1fr);
+	grid-template-columns: repeat(10, 1fr);
+
     width: 100vw;
     height: 100vh;
     margin-top: 100px;
@@ -21,22 +24,68 @@
 	grid-area: 3 / 4 / 4 / 8;
 
 }
-#btn-start {
-	grid-area: 6 / 5 / 7 / 7;
 
-}
-#btn-ranking {
+
+
+#btn-solo-mode {
 	grid-area: 7 / 5 / 8 / 7;
 
 }
-#btn-help {
+#btn-join-lobby {
 	grid-area: 8 / 5 / 9 / 7;
+
 }
 
+#btn-create-lobby {
+	grid-area:  9 / 5 / 10 / 7;
+
+}
+#btn-ranking {
+	grid-area: 10 / 5 / 11 / 7;
+}
+
+#btn-help {
+	grid-area: 11 / 5 / 12 / 7;
+}
+
+
 /* Tamanho e Margem - Btns Menu*/
-#btn-start,
+#btn-solo-mode,
+#btn-join-lobby,
+#btn-create-lobby,
 #btn-ranking,
 #btn-help {
     width: 200px !important;
     margin: 5px !important;
+}
+
+.btn-mute {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(18, 18, 18, 0.8); /* Fundo escuro para contrastar com o game-bg */
+    backdrop-filter: blur(8px);
+    border: 2px solid #56A2C0;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 30000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(86, 162, 192, 0.3);
+}
+
+.btn-mute:hover {
+    transform: scale(1.1);
+    background: #56A2C0;
+    color: #121212;
+}
+
+.btn-mute:active {
+    transform: scale(0.9);
 }
