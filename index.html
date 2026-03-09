@@ -6,20 +6,27 @@
         <link rel="stylesheet" href="styles/menu-styles.css">
         <link rel="stylesheet" href="styles/page-styles.css">
         <link rel="stylesheet" href="styles/game-styles.css">
+        <link rel="stylesheet" href="styles/gamefx.css">
         <link rel="stylesheet" href="styles/leaderboard-styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
     <body class="menu-bg">
     <div id="menu-grid">
-        <button type="button" id="btn-join-lobby" class="btn text-white btn-darkb-grad menu-btn">Entrar na Sala</button>
-        <button type="button" id="btn-create-lobby" class="btn text-white btn-darkb-grad menu-btn">Criar Sala</button>
-        <button type="button" id="btn-ranking" class="btn text-white btn-darkb-grad menu-btn">Ranking</button>
-        <button type="button" id="btn-help" class="btn text-white btn-darkb-grad menu-btn">Ajuda</button>
+        <button type="button" id="btn-solo-mode" class="btn text-white btn-darkb-grad menu-btn fw-bold">Jogar Solo</button>
+        <button type="button" id="btn-join-lobby" class="btn text-white btn-darkb-grad menu-btn fw-bold">Entrar na Sala</button>
+        <button type="button" id="btn-create-lobby" class="btn text-white btn-darkb-grad menu-btn fw-bold">Criar Sala</button>
+        <button type="button" id="btn-ranking" class="btn text-white btn-darkb-grad menu-btn fw-bold">Ranking Solo</button>
+        <button type="button" id="btn-help" class="btn text-white btn-darkb-grad menu-btn fw-bold">Ajuda</button>
     </div>
 <div id="game-screen" hidden>
-    <div class="status-bar">
-        <span>Pontos: <b id="score">0</b></span>
-        <span>Tempo: <b id="timer">120</b>s</span>
+    <div class="status-bar d-flex justify-content-center align-items-center gap-3 px-2 py-2">
+        <span class="badge text-white fs-6 px-3 py-2 rounded-pill" style="background: linear-gradient(135deg, #56A2C0, #7ACBDD) !important; box-shadow: 0 4px 8px rgba(0,0,0,0.4); border: 2px solid rgba(255,255,255,0.2);">
+            <i class="bi bi-trophy-fill me-1"></i>Pontos: <b id="score" class="ms-1">0</b>
+        </span>
+        <span class="badge text-white fs-6 px-3 py-2 rounded-pill" style="background: linear-gradient(135deg, #65D876, #56A2C0) !important; box-shadow: 0 4px 8px rgba(0,0,0,0.4); border: 2px solid rgba(255,255,255,0.2);">
+            <i class="bi bi-clock-fill me-1"></i>Tempo: <b id="timer" class="ms-1">60</b>s
+        </span>
     </div>
     <div class="game-container">
         <div id="game-area"></div>
@@ -36,7 +43,7 @@
         
         <div class="d-grid gap-2">
             <button id="btn-confirm-action" class="btn btn-primary fw-bold">Confirmar</button>
-            <button onclick="location.reload()" class="btn btn-outline-light btn-sm">Voltar</button>
+            <button onclick="document.getElementById('join-screen').hidden = true; document.getElementById('menu-grid').hidden = false;" class="btn btn-outline-light btn-sm">Sair</button>
         </div>
     </div>
 </div> 
@@ -52,7 +59,7 @@
         </div>  
         <p id="wait-message" class="text-warning small mt-2">Somente o host pode iniciar.</p>
         <button id="btn-start-match" class="btn btn-success fw-bold w-100" style="display: none;">INICIAR PARTIDA</button>
-        <button onclick="location.reload()" class="btn btn-outline-light btn-sm w-100 mt-2">Voltar</button>
+        <button onclick="document.getElementById('help-screen').hidden = true; document.getElementById('menu-grid').hidden = false;" class="btn btn-outline-light btn-sm w-100 mt-2">Voltar</button>
     </div>
 </div>
 
@@ -79,47 +86,72 @@
     </div>
 </div>
 <div id="help-screen" class="d-flex justify-content-center align-items-start min-vh-100" 
-     style="background: rgba(0,0,0,0.95); position: fixed; width: 100vw; top: 0; left: 0; z-index: 10005; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 40px 0;" 
+     style="background: rgba(0,0,0,0.95); position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 10005; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 40px 0;" 
      hidden>
     
-    <div class="card-container d-flex flex-column align-items-center gap-3">
-        <h3 class="text-white mb-2">Como Jogar?</h3>
+    <div class="d-flex flex-column align-items-center w-100">
         
-        <div class="card bg-primary shadow-lg border-light" style="width: 18rem;">
-            <img src="assets/help/help-1.png" class="card-img-top p-2" alt="Vírus e Bugs">
-            <div class="card-body py-2">
-                <h5 class="card-title text-center text-white mb-1">Tá vendo esses bugs e vírus? Pegue-os!</h5>
-                <p class="card-text text-center text-white-50 small">Clique neles para ganhar pontos!</p>
+        <div class="card-container d-flex flex-column align-items-center gap-3">
+            <h3 class="text-white mb-2">Como Jogar?</h3>
+            
+            <div class="card bg-primary shadow-lg border-light" style="width: 18rem;">
+                <img src="assets/help/help-1.png" class="card-img-top p-2" alt="Vírus e Bugs">
+                <div class="card-body py-2">
+                    <h5 class="card-title text-center text-white mb-1">Pegue os vírus!</h5>
+                    <p class="card-text text-center text-white-50 small">Clique neles para ganhar pontos!</p>
+                </div>
+                <ul class="list-group list-group-flush border-top border-light">
+                    <li class="list-group-item bg-primary text-white border-light small d-flex align-items-center">
+                        <img src="assets/entities/bug.png" class="help-icon me-2" style="width:25px"> Bug: +100 pontos
+                    </li>
+                    <li class="list-group-item bg-primary text-white border-light small d-flex align-items-center">
+                        <img src="assets/entities/virus-1.png" class="help-icon me-2" style="width:25px"> Vírus: +250 pontos
+                    </li>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush border-top border-light">
-                <li class="list-group-item bg-primary text-white border-light small">
-                    <img src="assets/entities/bug.png" class="help-icon"> Bug: +100 pontos
-                </li>
-                <li class="list-group-item bg-primary text-white border-light small">
-                    <img src="assets/entities/virus-1.png" class="help-icon"> Vírus: +250 pontos
-                </li>
-            </ul>
-        </div>
 
-        <div class="card bg-danger shadow-lg border-light" style="width: 18rem;">
-            <img src="assets/help/help-2.png" class="card-img-top p-2" alt="Arquivos e Escudos">
-            <div class="card-body py-2">
-                <h5 class="card-title text-center text-white mb-1">Não remova esses!</h5>
-                <p class="card-text text-center text-white-50 small">Eles não são vírus! Caso os remova, você perderá pontos!</p>
+            <div class="card bg-danger shadow-lg border-light" style="width: 18rem;">
+                <img src="assets/help/help-2.png" class="card-img-top p-2" alt="Arquivos e Escudos">
+                <div class="card-body py-2">
+                    <h5 class="card-title text-center text-white mb-1">Não remova esses!</h5>
+                    <p class="card-text text-center text-white-50 small">Caso os remova, perderá pontos!</p>
+                </div>
+                <ul class="list-group list-group-flush border-top border-light">
+                    <li class="list-group-item bg-danger text-white border-light small d-flex align-items-center">
+                        <img src="assets/entities/file.png" class="help-icon me-2" style="width:25px"> Arquivo: -50 pontos
+                    </li>
+                    <li class="list-group-item bg-danger text-white border-light small d-flex align-items-center">
+                        <img src="assets/entities/shield.png" class="help-icon me-2" style="width:25px"> Escudo: -40 pontos
+                    </li>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush border-top border-light">
-                <li class="list-group-item bg-danger text-white border-light small">
-                    <img src="assets/entities/file.png" class="help-icon"> Arquivo: -50 pontos
-                </li>
-                <li class="list-group-item bg-danger text-white border-light small">
-                    <img src="assets/entities/shield.png" class="help-icon"> Escudo: -40 pontos
-                </li>
-            </ul>
-        </div>
 
-        <button class="btn btn-light shadow fw-bold px-5 mt-2 mb-4" onclick="document.getElementById('help-screen').hidden = true; document.getElementById('menu-grid').hidden = false;">ENTENDI!</button>
+            <button class="btn btn-light shadow fw-bold px-5 mt-2 mb-4" 
+                    onclick="document.getElementById('help-screen').hidden = true; document.getElementById('menu-grid').hidden = false;">
+                ENTENDI!
+            </button>
+        </div>
+        
     </div>
 </div>
+
+<div id="solo-result-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 99999; justify-content: center; align-items: center;">
+    <div class="card-container text-center p-5" style="background: #1a1a1a; border: 2px solid #56A2C0; border-radius: 15px;">
+        <h2 class="text-white">FIM DE JOGO!</h2>
+        <p class="text-info h4">Score: <span id="final-solo-score">0</span></p>
+        <input type="text" id="solo-player-name" class="form-control my-3 text-center" placeholder="Seu Nome">
+        <button id="btn-save-solo" class="btn btn-success w-100">SALVAR RANKING</button>
+        <button onclick="location.reload()" class="btn btn-link text-white-50 btn-sm mt-2">Sair sem salvar</button>
+    </div>
+</div>
+
+<audio id="menu-music" src="assets/audio/ost/bug-catcher-menu.ogg" loop preload="auto"></audio>
+<audio id="game-music" src="#" loop preload="auto"></audio>
+
+<button id="btn-mute" class="btn-mute" title="Silenciar">
+    <span id="mute-icon">🔊</span>
+</button>
+
     <script type="module" src="scripts/firebase.js"></script>
     <script src="scripts/menu.js"></script>
     <script src="scripts/game.js"></script>
