@@ -11,7 +11,8 @@
     </head>
     <body class="menu-bg">
     <div id="menu-grid">
-        <button type="button" id="btn-start" class="btn text-white btn-darkb-grad menu-btn">Começar</button>
+        <button type="button" id="btn-join-lobby" class="btn text-white btn-darkb-grad menu-btn">Entrar na Sala</button>
+        <button type="button" id="btn-create-lobby" class="btn text-white btn-darkb-grad menu-btn">Criar Sala</button>
         <button type="button" id="btn-ranking" class="btn text-white btn-darkb-grad menu-btn">Ranking</button>
         <button type="button" id="btn-help" class="btn text-white btn-darkb-grad menu-btn">Ajuda</button>
     </div>
@@ -24,6 +25,37 @@
         <div id="game-area"></div>
     </div>
 </div>
+
+<div id="join-screen" class="screen-container" hidden>
+    <div class="card-container text-center">
+        <h3 id="join-screen-title" class="text-white mb-4">Configurar Partida</h3>
+        
+        <input type="text" id="player-name" class="form-control mb-3" placeholder="Seu Nickname" maxlength="12">
+        
+        <input type="text" id="room-id-input" class="form-control mb-3" placeholder="Código da Sala (Ex: ABCD)" style="text-transform:uppercase" hidden>
+        
+        <div class="d-grid gap-2">
+            <button id="btn-confirm-action" class="btn btn-primary fw-bold">Confirmar</button>
+            <button onclick="location.reload()" class="btn btn-outline-light btn-sm">Voltar</button>
+        </div>
+    </div>
+</div> 
+
+<div id="lobby-screen" class="screen-container" hidden>
+    <div class="card-container text-center">
+        <h3 class="text-white">SALA: <span id="display-room-id" class="text-info">----</span></h3>
+        <p class="text-white-50 small">Aguardando jogadores...</p>
+        <div id="player-list" class="list-group mb-4 text-start" style="max-height: 200px; overflow-y: auto;"></div>
+        <div id="round-summary" class="alert alert-info mt-3" hidden>
+        <h4 class="text-center">RESULTADOS DO ROUND <span id="summary-round-num"></span></h4>
+        <div id="summary-list"></div>
+        </div>  
+        <p id="wait-message" class="text-warning small mt-2">Somente o host pode iniciar.</p>
+        <button id="btn-start-match" class="btn btn-success fw-bold w-100" style="display: none;">INICIAR PARTIDA</button>
+        <button onclick="location.reload()" class="btn btn-outline-light btn-sm w-100 mt-2">Voltar</button>
+    </div>
+</div>
+
 <div id="ranking-screen" hidden>
     <div class="card-container">
         <h3>TOP 5 CAÇADORES</h3>
@@ -92,6 +124,7 @@
     <script src="scripts/menu.js"></script>
     <script src="scripts/game.js"></script>
     <script src="scripts/leaderboard.js"></script>
+    <script src="scripts/multiplayer.js"></script>
     
     </body>
 </html>
