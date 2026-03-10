@@ -6,12 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnHelp = document.getElementById("btn-help");
     const btnRanking = document.getElementById("btn-ranking");
     const btnSoloMode = document.getElementById("btn-solo-mode");
+    const btnCredits = document.getElementById("btn-credits");
     const menuGrid = document.getElementById("menu-grid");
     // const gameScreen = document.getElementById("game-screen");
     // const joinScreen = document.getElementById("join-screen");
     // const lobbyScreen = document.getElementById("lobby-screen");
     const rankingScreen = document.getElementById("ranking-screen");
     const helpScreen = document.getElementById("help-screen");
+    const creditsScreen = document.getElementById("credits-screen");
+    
 
     // //event listener do botão de entrar em uma sala já criada
     // btnJoinLobby.addEventListener("click", () => {
@@ -73,5 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             console.error("Função startSoloGame não encontrada no game.js!");
         }
-    }); 
+    });
+
+    if (btnCredits) {
+        btnCredits.addEventListener("click", () => {
+            document.getElementById('credits-screen').style.display = 'flex';
+        });
+    }
 });
