@@ -18,6 +18,7 @@
         <button type="button" id="btn-create-lobby" class="btn text-white btn-darkb-grad menu-btn fw-bold">Criar Sala</button>
         <button type="button" id="btn-ranking" class="btn text-white btn-darkb-grad menu-btn fw-bold">Ranking Solo</button>
         <button type="button" id="btn-help" class="btn text-white btn-darkb-grad menu-btn fw-bold">Ajuda</button>
+        <button type="button" id="btn-credits" class="btn text-white btn-darkb-grad menu-btn fw-bold">Créditos</button>
     </div>
 <div id="game-screen" hidden>
     <div class="status-bar d-flex justify-content-center align-items-center gap-3 px-2 py-2">
@@ -123,6 +124,10 @@
                     <li class="list-group-item bg-danger text-white border-light small d-flex align-items-center">
                         <img src="assets/entities/shield.png" class="help-icon me-2" style="width:25px"> Escudo: -40 pontos
                     </li>
+                    <li class="list-group-item bg-danger text-white border-light small d-flex align-items-center">
+                        <img src="assets/entities/cogwheel.png" class="help-icon me-2" style="width:25px"> Engrenagem: -50 pontos
+                    </li>
+                    
                 </ul>
             </div>
 
@@ -142,6 +147,278 @@
         <input type="text" id="solo-player-name" class="form-control my-3 text-center" placeholder="Seu Nome">
         <button id="btn-save-solo" class="btn btn-success w-100">SALVAR RANKING</button>
         <button onclick="location.reload()" class="btn btn-link text-white-50 btn-sm mt-2">Sair sem salvar</button>
+    </div>
+</div>
+
+<!-- Modal de Créditos -->
+<div id="credits-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 99999; overflow-y: auto; padding: 20px 0;">
+    <div class="container py-4" style="max-height: 100%; overflow-y: auto;">
+        <div class="card-container text-center p-4" style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border: 3px solid #56A2C0; border-radius: 20px; box-shadow: 0 0 30px rgba(86, 162, 192, 0.5); max-width: 900px; margin: 0 auto;">
+            
+            <h2 class="text-white mb-1 credits-title text-center" style="font-size: clamp(1.5rem, 4vw, 2.2rem); text-shadow: 0 0 20px rgba(86, 162, 192, 0.8); letter-spacing: 1px; line-height: 1.2; word-wrap: break-word;">
+                ORGANIZADORES DA CALOURADA
+            </h2>
+            <div class="mb-4" style="height: 3px; background: linear-gradient(90deg, transparent, #56A2C0, #7ACBDD, #56A2C0, transparent); border-radius: 2px;"></div>
+            
+            <div class="row g-3 mt-2">
+
+            <div class="col-md-12 mb-4 credit-card-animate" style="animation-delay: 0.1s;">
+                <div class="card bg-dark text-white h-100 credit-card-creator">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <img src="assets/credits/chris.jpg" class="rounded-circle mb-2" alt="Criador" style="width: 120px; height: 120px; object-fit: cover;">
+                        </div>
+                        
+                        <h4 class="card-title mb-2 name-glow-creator">Christian Silva</h4>
+                        
+                        <div class="mb-3">
+                            <span class="badge-creator">
+                                <i class="bi bi-code-slash me-1"></i> Organizador e Desenvolvedor
+                            </span>
+                        </div>
+
+                        <p class="mb-0">
+                            <i class="bi bi-instagram text-info"></i> 
+                            <a href="https://instagram.com/chr.silvav3.1" target="_blank" class="text-white text-decoration-none fw-bold">@chr.silvav3.1</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Exemplo: Testador Alpha -->
+            <div class="col-md-6 credit-card-animate" style="animation-delay: 0.3s;">
+                <div class="card h-100 credit-card-alpha-feminine">
+                    <div class="card-body p-3 text-center">
+                        <p class="text-warning mb-2 fw-bold" style="font-size: 0.8rem; letter-spacing: 1px;">Organizadora & Testadora Alpha</p>
+                        <div class="mb-2">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2 text-white" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title mb-2 name-glow-alpha-feminine">Laís Silva</h5>
+                        <p class="mb-1">
+                            <i class="bi bi-instagram text-danger"></i> 
+                            <a href="https://instagram.com/laiszinha16" target="_blank" class="text-white text-decoration-none">@laiszinha16</a>
+                        </p>
+                        <p class="text-warning small mb-0 fw-bold">Representante I</p>
+                        <p class="text-white-50 small mb-0">DS 2 | Veterana</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 credit-card-animate" style="animation-delay: 0.3s;">
+                <div class="card h-100 credit-card-alpha-feminine">
+                    <div class="card-body p-3 text-center">
+                        <p class="text-warning mb-2 fw-bold" style="font-size: 0.8rem; letter-spacing: 1px;">Organizadora & Testadora Alpha</p>
+                        <div class="mb-2">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2 text-white" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title mb-2 name-glow-alpha-feminine">Kiverlly Karollynne</h5>
+                        <p class="mb-1">
+                            <i class="bi bi-instagram text-danger"></i> 
+                            <a href="https://instagram.com/kiv._.ids" target="_blank" class="text-white text-decoration-none">@kiv._.ids</a>
+                        </p>
+                        <p class="text-warning small mb-0 fw-bold">Representante II</p>
+                        <p class="text-white-50 small mb-0">DS 2 | Veterana</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 credit-card-animate" style="animation-delay: 0.3s;">
+                <div class="card h-100 credit-card-alpha-feminine">
+                    <div class="card-body p-3 text-center">
+                        <p class="text-warning mb-2 fw-bold" style="font-size: 0.8rem; letter-spacing: 1px;">Organizadora & Testadora Alpha</p>
+                        <div class="mb-2">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2 text-white" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title mb-2 name-glow-alpha-feminine">Ana Paula Raad</h5>
+                        <p class="mb-1">
+                            <i class="bi bi-instagram text-danger"></i> 
+                            <a href="https://instagram.com/anapraad" target="_blank" class="text-white text-decoration-none">@anapraad</a>
+                        </p>
+                        <p class="text-warning small mb-0 fw-bold">Veterana | DS 2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 credit-card-animate" style="animation-delay: 0.3s;">
+                <div class="card h-100 credit-card-alpha-feminine">
+                    <div class="card-body p-3 text-center">
+                        <p class="text-warning mb-2 fw-bold" style="font-size: 0.8rem; letter-spacing: 1px;">Organizadora & Testadora Alpha</p>
+                        <div class="mb-2">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2 text-white" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title mb-2 name-glow-alpha-feminine">Julia Kuribayashi</h5>
+                        <p class="mb-1">
+                            <i class="bi bi-instagram text-danger"></i> 
+                            <a href="https://instagram.com/juhkuribayashi" target="_blank" class="text-white text-decoration-none">@juhkuribayashi</a>
+                        </p>
+                        <p class="text-warning small mb-0 fw-bold">Veterana | DS 2</p>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="col-md-6 credit-card-animate" style="animation-delay: 0.3s;">
+                <div class="card h-100 credit-card-alpha-feminine">
+                    <div class="card-body p-3 text-center">
+                        <p class="text-warning mb-2 fw-bold" style="font-size: 0.8rem; letter-spacing: 1px;">Organizadora & Testadora Alpha</p>
+                        <div class="mb-2">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2 text-white" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title mb-2 name-glow-alpha-feminine">Maria Clara Pinon</h5>
+                        <p class="mb-1">
+                            <i class="bi bi-instagram text-danger"></i> 
+                            <a href="https://instagram.com/mariapinonb" target="_blank" class="text-white text-decoration-none">@mariapinonb</a>
+                        </p>
+                        <p class="text-warning small mb-0 fw-bold">Veterana | DS 2</p>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="col-md-6 credit-card-animate" style="animation-delay: 0.3s;">
+                <div class="card h-100 credit-card-alpha-feminine">
+                    <div class="card-body p-3 text-center">
+                        <p class="text-warning mb-2 fw-bold" style="font-size: 0.8rem; letter-spacing: 1px;">Organizadora & Testadora Alpha</p>
+                        <div class="mb-2">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2 text-white" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title mb-2 name-glow-alpha-feminine">Lívia Melina (Mel)</h5>
+                        <p class="mb-1">
+                            <i class="bi bi-instagram text-danger"></i> 
+                            <a href="https://instagram.com/juhkuribayashi" target="_blank" class="text-white text-decoration-none">@lv.mellina</a>
+                        </p>
+                        <p class="text-warning small mb-0 fw-bold">Veterana | DS 3</p>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Exemplo: Testador Alpha -->
+                <div class="col-md-6 credit-card-animate" style="animation-delay: 0.2s;">
+                    <div class="card bg-dark text-white h-100 credit-card-alpha">
+                        <div class="card-body p-3">
+                            <div class="mb-2">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2" alt="Foto" style="width: 100px; height: 100px;">
+                            </div>
+                            <h5 class="card-title mb-2 name-glow-alpha">Carlos Eduardo Neves</h5>
+                            <p class="mb-1">
+                                <i class="bi bi-instagram text-danger"></i> 
+                                <a href="https://instagram.com/carloos.nvs" target="_blank" class="text-white text-decoration-none">@carloos.nvs</a>
+                            </p>
+                            <p class="text-warning small mb-0 fw-bold">Organizador & Testador Alpha</p>
+                            <p class="text-white-50 small mb-0">Veterano | DS 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemplo: Testador Alpha -->
+                <div class="col-md-6 credit-card-animate" style="animation-delay: 0.2s;">
+                    <div class="card bg-dark text-white h-100 credit-card-alpha">
+                        <div class="card-body p-3">
+                            <div class="mb-2">
+                                <img src="assets/credits/pedro.jpg" class="rounded-circle mb-2" alt="Foto" style="width: 100px; height: 100px;">
+                            </div>
+                            <h5 class="card-title mb-2 name-glow-alpha">Pedro Spinelli</h5>
+                            <p class="mb-1">
+                                <i class="bi bi-instagram text-danger"></i> 
+                                <a href="https://instagram.com/usuario" target="_blank" class="text-white text-decoration-none">@pedrovsa__</a>
+                            </p>
+                            <p class="text-warning small mb-0 fw-bold">Organizador & Testador Alpha</p>
+                            <p class="text-white-50 small mb-0">Veterano | DS 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemplo: Testador Alpha -->
+                <div class="col-md-6 credit-card-animate" style="animation-delay: 0.2s;">
+                    <div class="card bg-dark text-white h-100 credit-card-alpha">
+                        <div class="card-body p-3">
+                            <div class="mb-2">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2" alt="Foto" style="width: 100px; height: 100px;">
+                            </div>
+                            <h5 class="card-title mb-2 name-glow-alpha">Matheus Ribeiro</h5>
+                            <p class="mb-1">
+                                <i class="bi bi-instagram text-danger"></i> 
+                                <a href="https://instagram.com/matheus_libras" target="_blank" class="text-white text-decoration-none">@matheus_libras</a>
+                            </p>
+                            <p class="text-warning small mb-0 fw-bold">Organizador & Testador Alpha</p>
+                            <p class="text-white-50 small mb-0">Veterano | DS 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemplo: Testador Alpha -->
+                <div class="col-md-6 credit-card-animate" style="animation-delay: 0.2s;">
+                    <div class="card bg-dark text-white h-100 credit-card-alpha">
+                        <div class="card-body p-3">
+                            <div class="mb-2">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2" alt="Foto" style="width: 100px; height: 100px;">
+                            </div>
+                            <h5 class="card-title mb-2 name-glow-alpha">Marcos Silva Lopes</h5>
+                            <p class="mb-1">
+                                <i class="bi bi-instagram text-danger"></i> 
+                                <a href="https://instagram.com/calamidade_.44" target="_blank" class="text-white text-decoration-none">@calamidade_.44</a>
+                            </p>
+                            <p class="text-warning small mb-0 fw-bold">Organizador & Testador Alpha</p>
+                            <p class="text-white-50 small mb-0">Veterano | DS 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 credit-card-animate" style="animation-delay: 0.4s;">
+                    <div class="card bg-dark text-white h-100 credit-card-beta">
+                        <div class="card-body p-3">
+                            <div class="mb-2">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2" alt="Foto" style="width: 100px; height: 100px;">
+                            </div>
+                            <h5 class="card-title mb-2 name-glow-beta">Hendreo Matheus</h5>
+                            <p class="mb-1">
+                                <i class="bi bi-instagram text-danger"></i> 
+                                <a href="https://instagram.com/hn_santozz" target="_blank" class="text-white text-decoration-none">@hn_santozz</a>
+                            </p>
+                            <p class="text-info small mb-0">Organizador & Testador Beta</p>
+                            <p class="text-white-50 small mb-0">Veterano | DS 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemplo: Organizadora Feminina -->
+                <div class="col-md-6 credit-card-animate" style="animation-delay: 0.5s;">
+                    <div class="card bg-dark text-white h-100 credit-card-feminine">
+                        <div class="card-body p-3">
+                            <div class="mb-2">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2" alt="Foto" style="width: 100px; height: 100px;">
+                            </div>
+                            <h5 class="card-title mb-2 name-glow-feminine">Maria Clara Pantoja</h5>
+                            <p class="mb-1">
+                                <i class="bi bi-instagram text-danger"></i> 
+                                <a href="https://instagram.com/mari.jitta" target="_blank" class="text-white text-decoration-none">@mari.jitta</a>
+                            </p>
+                            <p class="text-white-50 small mb-0">Organizadora</p>
+                            <p class="text-white-50 small mb-0">Veterana | DS 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 credit-card-animate" style="animation-delay: 0.6s;">
+                    <div class="card bg-dark text-white h-100 credit-card-feminine">
+                        <div class="card-body p-3">
+                            <div class="mb-2">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle mb-2" alt="Foto" style="width: 100px; height: 100px;">
+                            </div>
+                            <h5 class="card-title mb-2 name-glow-feminine">Adrya Ferreira</h5>
+                            <p class="mb-1">
+                                <i class="bi bi-instagram text-danger"></i> 
+                                <a href="https://instagram.com/adrya_damasc" target="_blank" class="text-white text-decoration-none">@adrya_damasc</a>
+                            </p>
+                            <p class="text-white-50 small mb-0">Organizadora</p>
+                            <p class="text-white-50 small mb-0">Veterana | DS 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="document.getElementById('credits-screen').style.display = 'none';" class="btn btn-lg mt-4 px-5 text-white fw-bold" style="background: linear-gradient(135deg, #56A2C0, #7ACBDD); border: 2px solid #7ACBDD; border-radius: 25px; box-shadow: 0 4px 15px rgba(86, 162, 192, 0.4);">
+                VOLTAR
+            </button>
+        </div>
     </div>
 </div>
 
