@@ -91,7 +91,7 @@ const entityTypes = [
     { type: 'bug', src: 'assets/entities/bug.png', points: 100, prob: 0.20, size: 50 },
     
     // 10% de chance para o vírus (0.10) -> Soma total: 1.0
-    { type: 'virus', src: 'assets/entities/virus-1.png', points: 200, prob: 0.10, size: 40 },
+    { type: 'virus', src: 'assets/entities/virus-1.png', points: 250, prob: 0.10, size: 40 },
 
     // 10% de chance para o vírus 2 (0.10)
     { type: 'virus', src: 'assets/entities/virus-2.png', points: 250, prob: 0.10, size: 40 },
