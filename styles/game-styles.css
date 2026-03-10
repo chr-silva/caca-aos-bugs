@@ -103,3 +103,457 @@
         transform: translate(-50%, -40px); /* Sobe 40px enquanto some */
     }
 }
+
+
+/* ========== CRÉDITOS ========== */
+.credits-title {
+    animation: titlePulse 3s ease-in-out infinite;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Responsividade do título */
+@media (max-width: 768px) {
+    .credits-title {
+        font-size: 1.8rem !important;
+        letter-spacing: 0.5px !important;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .credits-title {
+        font-size: 1.4rem !important;
+        letter-spacing: 0px !important;
+        padding: 0 5px;
+        line-height: 1.3 !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .credits-title {
+        font-size: 1.2rem !important;
+        padding: 0 5px;
+    }
+}
+
+@keyframes titlePulse {
+    0%, 100% { 
+        transform: scale(1); 
+        text-shadow: 0 0 20px rgba(86, 162, 192, 0.8);
+    }
+    50% { 
+        transform: scale(1.05); 
+        text-shadow: 0 0 30px rgba(122, 203, 221, 1), 0 0 50px rgba(86, 162, 192, 0.6);
+    }
+}
+
+.credit-card-animate {
+    animation: slideInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== CARD EXCLUSIVO: CRIADOR DO JOGO ========== */
+.credit-card-creator {
+    border: 2px solid #56A2C0 !important;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: linear-gradient(135deg, #0f171a, #1a2a30) !important;
+    position: relative;
+    box-shadow: 0 0 15px rgba(86, 162, 192, 0.3);
+}
+
+/* Efeito de brilho pulsante na borda */
+.credit-card-creator::before {
+    content: "";
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(45deg, #56A2C0, #B4E8F3, #65D876, #56A2C0);
+    z-index: -1;
+    background-size: 400%;
+    animation: creatorBorderGlow 12s linear infinite;
+    border-radius: 16px;
+    opacity: 0.5;
+}
+
+@keyframes creatorBorderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.credit-card-creator:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 15px 45px rgba(86, 162, 192, 0.8);
+    border-color: #B4E8F3 !important;
+}
+
+.credit-card-creator img {
+    border: 4px solid #56A2C0 !important;
+    box-shadow: 0 0 25px rgba(86, 162, 192, 0.6);
+    transition: all 0.5s ease;
+    filter: grayscale(20%);
+}
+
+.credit-card-creator:hover img {
+    transform: scale(1.1) rotate(360deg); /* Giro completo no hover */
+    filter: grayscale(0%);
+    box-shadow: 0 0 35px rgba(180, 232, 243, 1);
+}
+
+/* Texto Neon para o Criador */
+.name-glow-creator {
+    color: #B4E8F3 !important;
+    font-weight: 900;
+    letter-spacing: 1px;
+    animation: creatorNamePulse 2s ease-in-out infinite;
+}
+
+@keyframes creatorNamePulse {
+    0%, 100% { 
+        text-shadow: 0 0 10px rgba(180, 232, 243, 0.6), 0 0 20px rgba(86, 162, 192, 0.4);
+    }
+    50% { 
+        text-shadow: 0 0 20px rgba(180, 232, 243, 1), 0 0 40px rgba(86, 162, 192, 0.8), 0 0 60px rgba(101, 216, 118, 0.4);
+        color: #ffffff !important;
+    }
+}
+
+.badge-creator {
+    background: linear-gradient(90deg, #56A2C0, #65D876);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    box-shadow: 0 0 10px rgba(101, 216, 118, 0.5);
+}
+
+
+/* Cards Padrão (Organizadores) */
+.credit-card-default {
+    border: 2px solid #56A2C0 !important;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.credit-card-default:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(86, 162, 192, 0.6);
+    border-color: #7ACBDD !important;
+}
+
+.credit-card-default img {
+    border: 3px solid #7ACBDD !important;
+    box-shadow: 0 0 15px rgba(122, 203, 221, 0.5);
+    transition: all 0.3s ease;
+}
+
+.credit-card-default:hover img {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 25px rgba(122, 203, 221, 0.8);
+}
+
+/* Cards Femininos (Rosa/Roxo) */
+.credit-card-feminine {
+    border: 2px solid #ff69b4 !important;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: linear-gradient(135deg, #1a1a1a, #2a1a2a) !important;
+}
+
+.credit-card-feminine:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.6);
+    border-color: #ff1493 !important;
+}
+
+.credit-card-feminine img {
+    border: 3px solid #ff69b4 !important;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    transition: all 0.3s ease;
+}
+
+.credit-card-feminine:hover img {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.8);
+}
+
+/* Cards Alpha (Dourado) */
+.credit-card-alpha {
+    border: 2px solid #ffd700 !important;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a1a) !important;
+}
+
+.credit-card-alpha:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.7);
+    border-color: #ffed4e !important;
+}
+
+.credit-card-alpha img {
+    border: 3px solid #ffd700 !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+.credit-card-alpha:hover img {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+}
+
+/* Cards Alpha Feminino (Dourado + Rosa) */
+.credit-card-alpha-feminine {
+    border: 2px solid #ffd700 !important;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: linear-gradient(135deg, #2a1a1a, #2a1a2a) !important;
+}
+
+.credit-card-alpha-feminine:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5), 0 5px 20px rgba(255, 105, 180, 0.4);
+    border-color: #ffed4e !important;
+}
+
+.credit-card-alpha-feminine img {
+    border: 3px solid #ffd700 !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 10px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+}
+
+.credit-card-alpha-feminine:hover img {
+    transform: scale(1.15) rotate(-10deg);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 15px rgba(255, 105, 180, 0.6);
+}
+
+/* Cards Beta (Prata/Azul claro) */
+.credit-card-beta {
+    border: 2px solid #c0c0c0 !important;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.credit-card-beta:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(192, 192, 192, 0.5);
+    border-color: #e0e0e0 !important;
+}
+
+.credit-card-beta img {
+    border: 3px solid #c0c0c0 !important;
+    box-shadow: 0 0 12px rgba(192, 192, 192, 0.4);
+    transition: all 0.3s ease;
+}
+
+.credit-card-beta:hover img {
+    transform: scale(1.08) rotate(5deg);
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.7);
+}
+
+/* Cards Beta Feminino (Prata + Rosa claro) */
+.credit-card-beta-feminine {
+    border: 2px solid #c0c0c0 !important;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background: linear-gradient(135deg, #1a1a1a, #251a22) !important;
+}
+
+.credit-card-beta-feminine:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(192, 192, 192, 0.4), 0 4px 15px rgba(255, 182, 193, 0.3);
+    border-color: #e0e0e0 !important;
+}
+
+.credit-card-beta-feminine img {
+    border: 3px solid #c0c0c0 !important;
+    box-shadow: 0 0 12px rgba(192, 192, 192, 0.4), 0 0 8px rgba(255, 182, 193, 0.2);
+    transition: all 0.3s ease;
+}
+
+.credit-card-beta-feminine:hover img {
+    transform: scale(1.08) rotate(-5deg);
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.7), 0 0 12px rgba(255, 182, 193, 0.4);
+}
+
+/* Animações de Nome */
+.name-glow {
+    animation: nameGlow 2s ease-in-out infinite;
+}
+
+@keyframes nameGlow {
+    0%, 100% { 
+        text-shadow: 0 0 5px rgba(122, 203, 221, 0.5);
+    }
+    50% { 
+        text-shadow: 0 0 15px rgba(122, 203, 221, 1), 0 0 25px rgba(86, 162, 192, 0.7);
+    }
+}
+
+.name-glow-feminine {
+    animation: nameGlowFeminine 2s ease-in-out infinite;
+}
+
+@keyframes nameGlowFeminine {
+    0%, 100% { 
+        text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+    }
+    50% { 
+        text-shadow: 0 0 15px rgba(255, 105, 180, 1), 0 0 25px rgba(255, 20, 147, 0.7);
+    }
+}
+
+.name-glow-alpha {
+    animation: nameGlowAlpha 2s ease-in-out infinite;
+    color: #ffd700 !important;
+}
+
+@keyframes nameGlowAlpha {
+    0%, 100% { 
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    }
+    50% { 
+        text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 35px rgba(255, 215, 0, 0.8);
+    }
+}
+
+.name-glow-alpha-feminine {
+    animation: nameGlowAlphaFeminine 2s ease-in-out infinite;
+    color: #ffd700 !important;
+}
+
+@keyframes nameGlowAlphaFeminine {
+    0%, 100% { 
+        text-shadow: 0 0 8px rgba(255, 215, 0, 0.6), 0 0 5px rgba(255, 105, 180, 0.3);
+    }
+    50% { 
+        text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 35px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 105, 180, 0.6);
+    }
+}
+
+.name-glow-beta {
+    animation: nameGlowBeta 2s ease-in-out infinite;
+    color: #c0c0c0 !important;
+}
+
+@keyframes nameGlowBeta {
+    0%, 100% { 
+        text-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+    }
+    50% { 
+        text-shadow: 0 0 12px rgba(192, 192, 192, 0.9), 0 0 20px rgba(192, 192, 192, 0.6);
+    }
+}
+
+.name-glow-beta-feminine {
+    animation: nameGlowBetaFeminine 2s ease-in-out infinite;
+    color: #c0c0c0 !important;
+}
+
+@keyframes nameGlowBetaFeminine {
+    0%, 100% { 
+        text-shadow: 0 0 5px rgba(192, 192, 192, 0.5), 0 0 3px rgba(255, 182, 193, 0.3);
+    }
+    50% { 
+        text-shadow: 0 0 12px rgba(192, 192, 192, 0.9), 0 0 20px rgba(192, 192, 192, 0.6), 0 0 10px rgba(255, 182, 193, 0.5);
+    }
+}
+
+/* ========== CARD ALPHA FEMININO (RGB DOURADO & ROSA) ========== */
+.credit-card-alpha-feminine {
+    position: relative;
+    border-radius: 15px;
+    z-index: 1;
+    background: #1a1a1a !important; /* Fundo interno escuro */
+    border: none !important; /* Removemos a borda padrão para usar a animada */
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* O efeito de luz circulando */
+.credit-card-alpha-feminine::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        #ffd700, 
+        #ff69b4, 
+        #ffd700, 
+        #ff1493, 
+        #ffd700
+    );
+    animation: rotateRGB 4s linear infinite;
+    z-index: -2;
+}
+
+/* Camada interna para criar a borda fina */
+.credit-card-alpha-feminine::after {
+    content: '';
+    position: absolute;
+    inset: 3px; /* Grossura da borda */
+    background: linear-gradient(135deg, #1a1a1a, #2a1a25);
+    border-radius: 12px;
+    z-index: -1;
+}
+
+@keyframes rotateRGB {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.credit-card-alpha-feminine:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.4), 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Ajuste na foto para combinar */
+.credit-card-alpha-feminine img {
+    border: 3px solid #ffd700 !important;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    transition: all 0.3s ease;
+}
+
+.credit-card-alpha-feminine:hover img {
+    border-color: #ff69b4 !important;
+    transform: scale(1.1) rotate(-5deg);
+}
+
+/* Glow do Nome (Dourado com sombra Rosa) */
+.name-glow-alpha-feminine {
+    color: #ffd700 !important;
+    font-weight: bold;
+    animation: alphaFemaleGlow 2s ease-in-out infinite;
+}
+
+@keyframes alphaFemaleGlow {
+    0%, 100% { 
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 5px rgba(255, 105, 180, 0.3);
+    }
+    50% { 
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 20, 147, 0.6);
+        color: #fff !important;
+    }
+}

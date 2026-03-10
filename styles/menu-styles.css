@@ -48,8 +48,13 @@
 	grid-area: 11 / 5 / 12 / 7;
 }
 
+#btn-credits {
+	grid-area: 12 / 5 / 13 / 7;
+}
+
 
 /* Tamanho e Margem - Btns Menu*/
+#btn-credits,
 #btn-solo-mode,
 #btn-join-lobby,
 #btn-create-lobby,
