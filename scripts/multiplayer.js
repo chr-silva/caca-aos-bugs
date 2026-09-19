@@ -73,7 +73,7 @@ document.getElementById('btn-confirm-action').addEventListener('click', () => {
 
 
 document.getElementById('btn-back').addEventListener('click', () => {
-    if (currentRoomId && !isGameRunning) {
+    if (currentRoomId) {
         leaveRoom();
     } else {
         document.getElementById('lobby-screen').hidden = true;
@@ -190,6 +190,7 @@ async function leaveRoom() {
 
     document.getElementById('lobby-screen').hidden = true;
     document.getElementById('join-screen').hidden = true;
+    document.getElementById('game-screen').hidden = true;
     if (document.getElementById('round-summary')) {
         document.getElementById('round-summary').hidden = true;
     }
