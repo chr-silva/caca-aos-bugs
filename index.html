@@ -56,11 +56,11 @@
         <div id="player-list" class="list-group mb-4 text-start" style="max-height: 200px; overflow-y: auto;"></div>
         <div id="round-summary" class="alert alert-info mt-3" hidden>
         <h4 class="text-center">RESULTADOS DO ROUND <span id="summary-round-num"></span></h4>
-        <div id="summary-list"></div>
+        <div id="summary-list" style="max-height: 200px; overflow-y: auto;"></div>
         </div>  
         <p id="wait-message" class="text-warning small mt-2">Somente o host pode iniciar.</p>
         <button id="btn-start-match" class="btn btn-success fw-bold w-100" style="display: none;">INICIAR PARTIDA</button>
-        <button onclick="document.getElementById('help-screen').hidden = true; document.getElementById('menu-grid').hidden = false;" class="btn btn-outline-light btn-sm w-100 mt-2">Voltar</button>
+        <button id="btn-back" class="btn btn-outline-light btn-sm w-100 mt-2">Voltar</button>
     </div>
 </div>
 
@@ -433,7 +433,7 @@
     <script src="scripts/menu.js"></script>
     <script src="scripts/game.js"></script>
     <script src="scripts/leaderboard.js"></script>
-    <script src="scripts/multiplayer.js"></script>
+    <script type="module" src="scripts/multiplayer.js"></script>
     
     </body>
 </html>
