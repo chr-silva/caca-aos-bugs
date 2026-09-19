@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, query, orderBy, limit, getDocs, 
-    doc, setDoc, updateDoc, onSnapshot, getDoc, deleteField, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    doc, setDoc, updateDoc, deleteDoc, onSnapshot, getDoc, deleteField, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBfTFOnMup6D1sL4c1yXEUBuSsUePoOBno",
@@ -20,6 +20,6 @@ const db = getFirestore(app);
 // Assim o leaderboard.js e outros conseguem acessar sem dar erro de "undefined"
 window.db = db;
 window.firestore = { collection, addDoc, query, orderBy, limit, getDocs, 
-    doc, setDoc, updateDoc, onSnapshot, getDoc, deleteField, increment};
+    doc, setDoc, updateDoc, deleteDoc, onSnapshot, getDoc, deleteField, increment};
 
 console.log("Firebase e Firestore inicializados com sucesso!");
