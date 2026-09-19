@@ -3,8 +3,8 @@ let currentRoomId = null;
 let isHost = false;
 let userAction = ""; //"create" ou "join
 let isGameRunning = false;
-
 let isMuted = false;
+let unsubscribeRoom = null;
 
 function playMusic(gameMode) {
     const menuMusic = document.getElementById('menu-music');
@@ -41,29 +41,28 @@ document.addEventListener('click', () => {
     }
 }, { once: true });
 
-
-
-// --- FUNÇÕES DE NAVEGAÇÃO ---
-
-//quando clica em "Criar Sala" no menu principal
+// NAVEGAÇÃO
 document.getElementById('btn-create-lobby').addEventListener('click', () => {
     document.getElementById('menu-grid').hidden = true;
     document.getElementById('join-screen').hidden = false;
     document.getElementById('join-screen-title').innerText = "Criar Nova Sala";
-    document.getElementById('room-id-input').hidden = true; // Não precisa de código para criar
+    document.getElementById('room-id-input').hidden = true;
     userAction = "create";
 });
 
-//quando clica em "Entrar na Sala" no menu principal
+// --- FUNÇÕES DE NAVEGAÇÃO ---
+
+//quando clica em "Criar Sala" no menu principal
 document.getElementById('btn-join-lobby').addEventListener('click', () => {
     document.getElementById('menu-grid').hidden = true;
     document.getElementById('join-screen').hidden = false;
-    document.getElementById('join-screen-title').innerText = "Entrar em uma Sala";
-    document.getElementById('room-id-input').hidden = false; // Precisa do código
+    document.getElementById('join-screen-title').innerText = "Entrar em uma Sala"; 
+    document.getElementById('room-id-input').hidden = false; 
     userAction = "join";
 });
 
 //botão de confirmação dentro da join-screen
+//quando clica em "Entrar na Sala" no menu principal
 document.getElementById('btn-confirm-action').addEventListener('click', () => {
     if (userAction === "create") {
         createRoom();
@@ -72,8 +71,18 @@ document.getElementById('btn-confirm-action').addEventListener('click', () => {
     }
 });
 
-// --- FUNÇÕES AUXILIARES ---
 
+document.getElementById('btn-back').addEventListener('click', () => {
+    if (currentRoomId && !isGameRunning) {
+        leaveRoom();
+    } else {
+        document.getElementById('lobby-screen').hidden = true;
+        document.getElementById('join-screen').hidden = true;
+        document.getElementById('menu-grid').hidden = false;
+    }
+})
+
+// --- FUNÇÕES AUXILIARES ---
 function generateRoomId() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let id = '';
@@ -89,20 +98,21 @@ function showLobbyUI(roomId) {
     document.getElementById('display-room-id').innerText = roomId;
 }
 
-// --- LÓGICA FIREBASE ---
-
+// FIREBASE
 async function createRoom() {
     const playerName = document.getElementById('player-name').value.trim();
     if (!playerName) return alert("Digite seu nome!");
 
     const roomId = generateRoomId();
     const roomRef = window.firestore.doc(window.db, "rooms", roomId);
+    const roomSeed = Math.floor(Math.random() * Math.pow(10, 6));
 
     try {
         await window.firestore.setDoc(roomRef, {
             status: "lobby",
             host: playerName,
-            currentRound: 1, //inicializa a rodada no db
+            seed: roomSeed,
+            currentRound: 1,
             roundScores: {},
             createdAt: new Date().getTime(),
             players: {
@@ -110,9 +120,11 @@ async function createRoom() {
             }
         });
 
-        window.currentRound = 1; //global para o game.js enxergar
-        window.playerName = playerName;  //para o game.js saber quem está enviando os pontos
+        
+        window.currentRound = 1;
+        window.playerName = playerName;
         window.currentRoomId = roomId;
+        window.currentSeed = roomSeed;
 
         isHost = true;
         currentRoomId = roomId;
@@ -141,7 +153,6 @@ async function joinRoom() {
 
         window.playerName = playerName;
         window.currentRoomId = roomId;
-        // window.currentRound será atualizado pelo onSnapshot
         currentRoomId = roomId;
         isHost = false;
         startListening(roomId);
@@ -151,15 +162,57 @@ async function joinRoom() {
     }
 }
 
+async function leaveRoom() {
+    if (unsubscribeRoom) {
+        unsubscribeRoom();
+        unsubscribeRoom = null;
+    }
+
+    if (currentRoomId && window.playerName) {
+        const roomRef = window.firestore.doc(window.db, "rooms", currentRoomId);
+        try {
+            if (isHost) {
+                await window.firestore.deleteDoc(roomRef);
+            } else {
+                await window.firestore.updateDoc(roomRef, {
+                    [`players.${window.playerName}`]: window.firestore.deleteField()
+                });
+            }
+        } catch (e) {
+            console.error("Erro ao remover jogador da sala: ", e);
+        }
+    }
+
+    currentRoomId = null;
+    window.currentRoomId = null;
+    isHost = false;
+    isGameRunning = false;
+
+    document.getElementById('lobby-screen').hidden = true;
+    document.getElementById('join-screen').hidden = true;
+    if (document.getElementById('round-summary')) {
+        document.getElementById('round-summary').hidden = true;
+    }
+    document.getElementById('menu-grid').hidden = false;
+
+    document.body.classList.remove("game-bg");
+    document.body.classList.add("menu-bg");
+}
+
 function startListening(roomId) {
     const roomRef = window.firestore.doc(window.db, "rooms", roomId);
 
-    window.firestore.onSnapshot(roomRef, (docSnap) => {
+    if (unsubscribeRoom) {
+        unsubscribeRoom();
+    }
+
+    unsubscribeRoom = window.firestore.onSnapshot(roomRef, (docSnap) => {
         if (!docSnap.exists()) return;
         const data = docSnap.data();
 
         //sincroniza a rodada atual com o que tá no db pra todos os jogadores
         window.currentRound = data.currentRound || 1;
+        window.currentSeed = data.seed || 12345;
 
         updatePlayerListUI(data.players);
 
@@ -177,42 +230,40 @@ function startListening(roomId) {
             } else {
                 document.getElementById('btn-start-match').innerText = `REINICIAR RODADA ${data.currentRound + 1}`;
             }
-            //difere os textos do botão se for a primeira rodada
-            
-            //opcional - mudar o texto do botão se não for a rodada 1
-            if (window.currentRound > 1) {
-                document.getElementById('btn-start-match').innerText = `INICIAR RODADA ${window.currentRound + 1}`;
-            }
+        //se o status for "jogando", mudamos pra tela de jogo
+        } else {
+            document.getElementById('btn-start-match').style.display = 'none';
+            document.getElementById('wait-message').style.display = 'block';
         }
 
-        //se o status for "jogando", mudamos pra tela de jogo
         if (data.status === "playing" && !isGameRunning) {
             isGameRunning = true;
 
-            // 1. Preparação visual das telas
             document.getElementById('lobby-screen').hidden = true;
             document.getElementById('game-screen').hidden = false;
+            
+            const btnBack = document.getElementById('btn-back');
+            if (btnBack) btnBack.hidden = true;
+
             document.body.classList.remove("menu-bg");
             document.body.classList.add("game-bg");
 
-            // 2. Chama a função global que definimos no game.js
-            // Ela vai limpar a game-area e mostrar o 3, 2, 1...
             if (typeof startCountdown === 'function') {
                 startCountdown(() => {
-                    // Isso só executa após o "JÁ!"
                     playMusic("game");
                     if (typeof window.initGame === 'function') window.initGame();
                 });
             } else {
-                // Fallback caso a função não seja encontrada
                 playMusic("game");
                 if (typeof window.initGame === 'function') window.initGame();
             }
-        } else if(data.status === "lobby") {
-                    isGameRunning = false;
-                    playMusic("menu");
-                }
-            });
+        } else if (data.status === "lobby") {
+            isGameRunning = false;
+            const btnBack = document.getElementById('btn-back');
+            if (btnBack) btnBack.hidden = false;
+            playMusic("menu");
+        }
+    });
 }
 
 function updatePlayerListUI(players) {
@@ -227,7 +278,7 @@ function updatePlayerListUI(players) {
 }
 
 document.getElementById('btn-start-match').addEventListener('click', async () => {
-    if (!currentRoomId) return;
+    if (!currentRoomId || !isHost) return;
     const roomRef = window.firestore.doc(window.db, "rooms", currentRoomId);
     
     const roomSnap = await window.firestore.getDoc(roomRef);
