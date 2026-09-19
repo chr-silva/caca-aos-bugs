@@ -5,8 +5,11 @@ const TOTAL_GAME_TIME = 60; //tempo inicial em segundos, mudar isso altera o tem
 const TOTAL_GAME_ROUNDS = 3; //numero de rodadas
 const INITIAL_SPAWN_DELAY = 500; //antes 1000
 const MIN_SPAWN_DELAY = 200; // Limite máximo de velocidade (0.3 segundos) / antes 300
+const LCG_RNDMULT_VAL = Math.pow(7, 5);
+const LCG_RNDMOD_VAL  = Math.pow(2, 31) - 1; 
 
 let score = 0;
+let internalSeed = 0;
 let timeLeft = TOTAL_GAME_TIME; 
 let timerInterval;
 let nextSpawnDelay = INITIAL_SPAWN_DELAY;
@@ -14,6 +17,11 @@ let gameInterval;
 
 let isFinishing = false;
 let isSoloMode = false;
+
+function randomGameSeed() {
+    internalSeed = (internalSeed * LCG_RNDMULT_VAL) % LCG_RNDMOD_VAL;
+    return (internalSeed - 1) / LCG_RNDMOD_VAL;
+}
 
 // Função para iniciar o modo solo
 function startSoloGame() {
@@ -100,14 +108,14 @@ const entityTypes = [
 ];
 
 function gameLoop() {
-    if (timeLeft <= 0) return; // Para o loop se o tempo acabou
+    if (timeLeft <= 0) return; //para o loop se o tempo acabou
 
     spawnEntity();
 
-    // CALCULO DA ACELERAÇÃO:
-    // Quanto menos tempo resta, menor o delay.
-    // Ex: Em 120s, delay é 1000ms. Em 0s, delay chega perto de 300ms.
-    // A cada segundo que passa, subtraímos um pouco do delay.
+    // CALCULO DA ACELERAÇÃO
+    //quanto menos tempo sobra, menor o delay
+    //ex: em 120s, delay é 1000ms, em 0s, delay chega perto de 300ms
+    //a cada segundo que passa, é subtraído um pouco do delay
     
     const progress = (TOTAL_GAME_TIME - timeLeft) / TOTAL_GAME_TIME; // Vai de 0 a 1
     nextSpawnDelay = INITIAL_SPAWN_DELAY - (progress * (INITIAL_SPAWN_DELAY - MIN_SPAWN_DELAY));
@@ -120,6 +128,7 @@ function initGame() {
     // Reset de variáveis de controle do loop
     score = 0;
     timeLeft = TOTAL_GAME_TIME;
+    internalSeed = window.currentSeed || Math.floor(Math.random() * Math.pow(10, 6));
     nextSpawnDelay = INITIAL_SPAWN_DELAY;
     
     updateUI();
@@ -139,7 +148,7 @@ function initGame() {
 }
 
 function spawnEntity() {
-    const rand = Math.random();
+    const rand = randomGameSeed();
     let cumulativeProb = 0;
     let selectedEntity = entityTypes[0];
 
@@ -199,8 +208,8 @@ function createIcon(entity) {
     img.style.transition = 'opacity 0.4s';
 
     // Sorteia dentro dos limites da tela (considerando a barra de status)
-    const x = Math.floor(Math.random() * (maxWidth - entity.size));
-    const y = Math.floor(Math.random() * (maxHeight - entity.size - 80)) + 80;
+    const x = Math.floor(randomGameSeed() * (maxWidth - entity.size));
+    const y = Math.floor(randomGameSeed() * (maxHeight - entity.size - 80)) + 80;
 
     img.style.left = `${x}px`;
     img.style.top = `${y}px`;
