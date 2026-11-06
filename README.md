@@ -1,3 +1,5 @@
+![Imagem do jogo Caça aos Bugs](https://github.com/chr-silva/caca-aos-bugs/blob/main/assets/menu-bg.png?raw=true)
+
 # 🐛 Caça aos Bugs! Calourada DS 2026
 
 O **Caça aos Bugs!** é um jogo web interativo desenvolvido especialmente para a recepção dos calouros (Calourada) do curso de Desenvolvimento de Sistemas (DS). O objetivo é testar os reflexos dos participantes capturando vírus e bugs enquanto evitam arquivos do sistema e escudos de proteção.
