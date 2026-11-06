@@ -1,4 +1,4 @@
-# 🐛 Caça aos Bugs! — Calourada DS
+# 🐛 Caça aos Bugs! Calourada DS 2026
 
 O **Caça aos Bugs!** é um jogo web interativo desenvolvido especialmente para a recepção dos calouros (Calourada) do curso de Desenvolvimento de Sistemas (DS). O objetivo é testar os reflexos dos participantes capturando vírus e bugs enquanto evitam arquivos do sistema e escudos de proteção.
 
@@ -25,7 +25,7 @@ O **Caça aos Bugs!** é um jogo web interativo desenvolvido especialmente para 
 ## 🕹️ Como Jogar
 
 1. **Bug (`+100 pts`):** Elimine os erros simples do sistema!
-2. **Vírus (`+250 pts`):** Ameças de alto valor, clique rápido!
+2. **Vírus (`+250 pts`):** Ameaças de alto valor, clique rápido!
 3. **Arquivo (`-50 pts`):** Atenção! Não apague arquivos importantes.
 4. **Escudo (`-40 pts`):** Cuidado para não danificar a proteção do sistema.
 
@@ -55,3 +55,13 @@ O **Caça aos Bugs!** é um jogo web interativo desenvolvido especialmente para 
 - **Maria Clara Pantoja** — [@mari.jitta](https://instagram.com/mari.jitta)
 - **Adrya Ferreira** — [@adrya_damasc](https://instagram.com/adrya_damasc)
 - **Débora Costa de Oliveira** — [@debora_xk](https://instagram.com/debora_xk)
+  
+---
+
+### Agradecimentos Especiais e uma Mensagem Minha
+
+Queria agradecer muito a todos os meus amigos que participaram da calourada e que ajudaram a testar e organizar o jogo, foi um evento muito divertido, me sinto muito grato a todos vocês, não podia pedir uma turma melhor que todos vocês!
+Queria desejar, também, uma ótima jornada aos nossos calouros de DS! Que vocês se descubram, deem o melhor de si e se tornem os melhores programadores que o IFPA já teve!
+
+Um abraço!
+– *Chris*
